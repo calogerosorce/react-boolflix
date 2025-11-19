@@ -1,5 +1,14 @@
+import { useGlobalProvider } from "../GlobalContext"
+
+
 export default function Header() {
 
+
+    function handleSubmit(e) {
+        e.preventDefault()
+
+    }
+    const { search, setSearch } = useGlobalProvider()
 
     return (
 
@@ -28,15 +37,17 @@ export default function Header() {
                                 <a className="nav-link" href="#">Link</a>
                             </li>
                         </ul>
-                        <form className="d-flex my-2 my-lg-0">
+                        <form onSubmit={handleSubmit} className="d-flex my-2 my-lg-0">
                             <input
                                 className="form-control me-sm-2"
                                 type="text"
                                 placeholder="Search"
-                            />
+                                value={search}
+                                onChange={(e) => setSearch(e.target.value)} />
                             <button
                                 className="btn btn-outline-success my-2 my-sm-0"
-                                type="submit">
+                                type="submit"
+                            >
                                 Search
                             </button>
                         </form>
