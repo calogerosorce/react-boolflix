@@ -16,7 +16,6 @@ function GlobalProvider({ children }) {
         axios.get(api)
             .then(res => {
                 setCharts(res.data.results)
-                console.log(res);
             }).catch(err => {
                 console.log(err);
             })
@@ -32,7 +31,6 @@ function GlobalProvider({ children }) {
     }, [search])
 
     const api = `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&query=${search}`
-    console.log(search);
 
     const values = {
         search,

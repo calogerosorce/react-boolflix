@@ -9,9 +9,16 @@ function App() {
     <>
       <Header />
       <main>
+
         {filters.map(items => (
-          <p>{items.original_title}</p>
+          <div className="container">
+            <p>{items.original_title}</p>
+            <p>{items.title}</p>
+            <p>{items.original_language}</p>
+            <p>{items.vote_average}</p>
+          </div>
         ))}
+
       </main>
     </>
   )
