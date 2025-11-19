@@ -3,6 +3,7 @@ import { useGlobalProvider } from "./GlobalContext"
 
 function App() {
   const { filters } = useGlobalProvider()
+  console.log(filters);
 
   return (
     <>

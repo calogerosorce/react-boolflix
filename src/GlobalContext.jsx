@@ -22,6 +22,7 @@ function GlobalProvider({ children }) {
             })
     }
     useEffect(() => {
+        fetchData()
         if (search.length > 0) {
             const filterFilms = charats.filter(items => items.title.toLowerCase().includes(search.toLowerCase()))
             setFilters(filterFilms)
