@@ -11,6 +11,10 @@ function GlobalProvider({ children }) {
     const [search, setSearch] = useState('')
 
 
+    function handleSubmit(e) {
+        e.preventDefault()
+
+    }
     function fetchData() {
 
         axios.get(api)
@@ -28,14 +32,15 @@ function GlobalProvider({ children }) {
         } else {
             setFilters(charats)
         }
-    }, [search])
+    }, [handleSubmit])
 
     const api = `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&query=${search}`
 
     const values = {
         search,
         setSearch,
-        filters
+        filters,
+        handleSubmit
     }
 
 

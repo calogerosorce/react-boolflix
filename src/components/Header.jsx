@@ -4,11 +4,8 @@ import { useGlobalProvider } from "../GlobalContext"
 export default function Header() {
 
 
-    function handleSubmit(e) {
-        e.preventDefault()
 
-    }
-    const { search, setSearch } = useGlobalProvider()
+    const { search, setSearch, handleSubmit } = useGlobalProvider()
 
     return (
 
