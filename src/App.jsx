@@ -2,15 +2,16 @@ import Header from "./components/Header"
 import { useGlobalProvider } from "./GlobalContext"
 
 function App() {
-  const { filters } = useGlobalProvider()
-  console.log(filters);
+  const { charats, film } = useGlobalProvider()
+
+  console.log(charats);
 
   return (
     <>
       <Header />
       <main>
 
-        {filters.map(items => (
+        {charats?.map(items => (
           <div className="container">
             <p>{items.original_title}</p>
             <p>{items.title}</p>

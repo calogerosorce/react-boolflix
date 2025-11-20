@@ -6,41 +6,58 @@ const GlobalContext = createContext()
 function GlobalProvider({ children }) {
 
     const api_key = import.meta.env.VITE_API
-    const [charats, setCharts] = useState([])
-    const [filters, setFilters] = useState(charats)
+    const [film, setFilm] = useState([])
+    const [serie, setSerie] = useState([])
+    const [charats, setCharats] = useState([])
+    /* const [filters, setFilters] = useState(null) */
     const [search, setSearch] = useState('')
 
 
-    function handleSubmit(e) {
-        e.preventDefault()
 
-    }
     function fetchData() {
+        const api = `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&query=${search}`
+        const api_serie = `https://api.themoviedb.org/3/search/tv?api_key=${api_key}&query=${search}`
+
 
         axios.get(api)
             .then(res => {
-                setCharts(res.data.results)
+                setFilm(res.data.results)
+                setCharats(prev => [...prev, ...film])
+
+            }).catch(err => {
+                console.log(err);
+            })
+
+        axios.get(api_serie)
+            .then(res => {
+                setSerie(res.data.results)
+                setCharats(prev => [...prev, ...serie])
+
             }).catch(err => {
                 console.log(err);
             })
     }
-    useEffect(() => {
-        fetchData()
-        if (search.length > 0) {
-            const filterFilms = charats.filter(items => items.title.toLowerCase().includes(search.toLowerCase()))
-            setFilters(filterFilms)
-        } else {
-            setFilters(charats)
-        }
-    }, [handleSubmit])
 
-    const api = `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&query=${search}`
+
+    function handleSubmit(e) {
+        e.preventDefault()
+        fetchData()
+
+    }
+
+    /*  useEffect(() => {
+ 
+           const filterFilms = charats.filter(items => items.title.toLowerCase().includes(search.toLowerCase()))
+           setFilters(filterFilms)
+   
+     }, [handleSubmit]) */
 
     const values = {
         search,
         setSearch,
-        filters,
-        handleSubmit
+        charats,
+        handleSubmit,
+        film
     }
 
 
