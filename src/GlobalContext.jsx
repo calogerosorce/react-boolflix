@@ -21,19 +21,23 @@ function GlobalProvider({ children }) {
 
         axios.get(api)
             .then(res => {
-                setFilm(res.data.results)
-                setCharats(prev => [...prev, ...film])
-
-            }).catch(err => {
+                const movieResults = res.data.results || []
+                setFilm(movieResults)
+                // Usa direttamente movieResults, non film
+                setCharats(prev => [...prev, ...movieResults])
+            })
+            .catch(err => {
                 console.log(err);
             })
 
         axios.get(api_serie)
             .then(res => {
-                setSerie(res.data.results)
-                setCharats(prev => [...prev, ...serie])
-
-            }).catch(err => {
+                const tvResults = res.data.results || []
+                setSerie(tvResults)
+                // Usa direttamente tvResults, non serie
+                setCharats(prev => [...prev, ...tvResults])
+            })
+            .catch(err => {
                 console.log(err);
             })
     }
