@@ -9,7 +9,6 @@ function GlobalProvider({ children }) {
     const [film, setFilm] = useState([])
     const [serie, setSerie] = useState([])
     const [charats, setCharats] = useState([])
-    /* const [filters, setFilters] = useState(null) */
     const [search, setSearch] = useState('')
 
 
@@ -49,12 +48,7 @@ function GlobalProvider({ children }) {
 
     }
 
-    /*  useEffect(() => {
- 
-           const filterFilms = charats.filter(items => items.title.toLowerCase().includes(search.toLowerCase()))
-           setFilters(filterFilms)
-   
-     }, [handleSubmit]) */
+
 
     const values = {
         search,
